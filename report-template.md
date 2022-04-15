@@ -58,6 +58,9 @@ Initally we verify the the test train split presevered the 3% minority class.  N
 
 * Describe the stages of the machine learning process you went through as part of this analysis.
 
+
+![Model Fit Predict](12-1-model-fit-predict-diagram.png)
+
     ### 1.  Model
     A machine learning model mathematically represents something in the real world. A model starts as untrained. That is, we haven’t yet adjusted it to make sense of the data. 
     
