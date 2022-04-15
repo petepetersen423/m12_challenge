@@ -36,15 +36,15 @@ from imblearn.metrics import classification_report_imbalanced
 
 ## Files in this repo
 
-\Resources\lending_data.csv
-credit_risk_resampling.ipynb
-report_template.md
-README.md
+\Resources\lending_data.csv  
+credit_risk_resampling.ipynb  
+report_template.md  
+README.md  
 
 Additionally, there are three image files that are used in the analysis report markdown files.
 
-12-1-model-fit-predict-diagram.png
-original_confusion.png
-resampled_confudion.png
+12-1-model-fit-predict-diagram.png  
+original_confusion.png  
+resampled_confudion.png  
 
 
