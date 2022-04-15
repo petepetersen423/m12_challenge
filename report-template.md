@@ -20,6 +20,8 @@ Using bulleted lists, describe the balanced accuracy scores and the precision an
 ```
 # Print the classification report for the model
 print(classification_report_imbalanced(y_test, y_original_pred))
+```
+
 
                    pre       rec       spe        f1       geo       iba       sup
 
@@ -27,13 +29,27 @@ print(classification_report_imbalanced(y_test, y_original_pred))
           1       0.85      0.91      0.99      0.88      0.95      0.90       619
 
 avg / total       0.99      0.99      0.91      0.99      0.95      0.91     19384
-```
+
 
 
 
 
 * Machine Learning Model 2:
   * Description of Model 2 Accuracy, Precision, and Recall scores.
+```
+# Print the classification report for the model
+
+print(classification_report_imbalanced(y_test, y_resampled_pred))
+```
+
+                   pre       rec       spe        f1       geo       iba       sup
+
+          0       1.00      0.99      0.99      1.00      0.99      0.99     18765
+          1       0.84      0.99      0.99      0.91      0.99      0.99       619
+
+avg / total       0.99      0.99      0.99      0.99      0.99      0.99     19384
+
+
 
 ## Summary
 
