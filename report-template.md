@@ -10,7 +10,7 @@ Using imbalanced-learn and scikit-learn libraries,  evaluate two machine learnin
 
 * Explain what financial information the data was on, and what you needed to predict.
 
-For this excerside we use a dataset of historical lending activity from a peer-to-peer lending services company to build a model that can identify the creditworthiness of borrowers.  The provided data includes loan_size, interest_rate, borrower_income, debt_to_income, num_of_accounts, derogatory_marks,and  total_debt.  The dataset also includes our target variable **Loan Status'**.  Since the labeled **'Loan Status'** contains either a value of 0  meaning that the loan is healthy, or a value of 1 meaning that the loan has a high risk of defaulting.  We will select a model that minimizes the false positives (incorrectly predicted healthy loans)in the 0 class and the false negatives(loans the we failed to predict as unhealthly) in the 1 class.  However, we belive that we should seek to minimize the incorrectly predicted healthy loans because because these loans will not be priced appropriately to handle the probability of default, while a false prrediction in the unhealthy class is not a risk to the lender, but only falsely punishes the borrower since they will be saddled with an in appropriate rate compensate for teh default risk.
+For this excersise we use a dataset of historical lending activity from a peer-to-peer lending services company to build a model that can identify the creditworthiness of borrowers.  The provided data includes loan_size, interest_rate, borrower_income, debt_to_income, num_of_accounts, derogatory_marks,and  total_debt.  The dataset also includes our target variable **Loan Status'**.  Since the labeled **'Loan Status'** contains either a value of 0  meaning that the loan is healthy, or a value of 1 meaning that the loan has a high risk of defaulting.  We will select a model that minimizes the false positives (incorrectly predicted healthy loans)in the 0 class and the false negatives(loans the we failed to predict as unhealthly) in the 1 class.  However, we belive that we should seek to minimize the incorrectly predicted healthy loans because because these loans will not be priced appropriately to handle the probability of default, while a false prediction in the unhealthy class is not a risk to the lender, but only falsely punishes the borrower since they will be saddled with an in appropriate rate compensate for teh default risk.
 
 * Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
 
@@ -95,12 +95,12 @@ model = LogisticRegression(random_state=1)
 # Fit the model using training data
 lr_orginal_model = model.fit(X_train, y_train)
 ```
-### Step 2: Save the predictions on the testing data labels by using the testing feature data (`X_test`) and the fitted model.
+### Step 3: Save the predictions on the testing data labels by using the testing feature data (`X_test`) and the fitted model.
 ```
 # Make a prediction using the testing data
 y_original_pred = lr_orginal_model.predict(X_test)
 ```
-### Step 3: Evaluate the model’s performance by doing the following:
+### Step 4: Evaluate the model’s performance by doing the following:
 
     * Calculate the accuracy score of the model.
 
@@ -115,7 +115,44 @@ Using bulleted lists, describe the balanced accuracy scores and the precision an
 
 * Machine Learning Model 1:
   * Description of Model 1 Accuracy, Precision, and Recall scores.
+  
+ In order to evaluate the models, we must take a close look at the confusion matrix.  Below we find the confusion matrix for the un-resampled test data.
+     
+ TP[[18663   102]
+ FP[   56   563]]
 
+  
+Precision – What percent of your predictions were correct?
+
+Precision is the ability of a classifier not to label an instance positive that is actually negative. For each class it is defined as the ratio of true positives to the sum of true and false positives.
+
+TP – True Positives
+FP – False Positives
+
+Precision – Accuracy of positive predictions.
+Precision = TP/(TP + FP)
+
+
+Recall – What percent of the positive cases did you catch? 
+
+Recall is the ability of a classifier to find all positive instances. For each class it is defined as the ratio of true positives to the sum of true positives and false negatives.
+
+FN – False Negatives
+
+Recall: Fraction of positives that were correctly identified.
+Recall = TP/(TP+FN)
+
+F1 score – What percent of positive predictions were correct? 
+
+The F1 score is a weighted harmonic mean of precision and recall such that the best score is 1.0 and the worst is 0.0. Generally speaking, F1 scores are lower than accuracy measures as they embed precision and recall into their computation. As a rule of thumb, the weighted average of F1 should be used to compare classifier models, not global accuracy.
+
+F1 Score = 2*(Recall * Precision) / (Recall + Precision)
+
+  * Accuracy  = 0.95  
+  * Precision 0 class = 1.00, 1 class = .85
+  * Recall 0 class = 99, 1 class = .91
+  
+  
 ```
 # Print the classification report for the model
 print(classification_report_imbalanced(y_test, y_original_pred))
@@ -130,6 +167,10 @@ print(classification_report_imbalanced(y_test, y_original_pred))
 
 * Machine Learning Model 2:
   * Description of Model 2 Accuracy, Precision, and Recall scores.
+  
+  * Accuracy  = 0.99  
+  * Precision 0 class = 1.00, 1 class = .84
+  * Recall 0 class = 99, 1 class = .99
 ```
 # Print the classification report for the model
 
@@ -146,7 +187,13 @@ print(classification_report_imbalanced(y_test, y_resampled_pred))
 ## Summary
 
 Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
+
 * Which one seems to perform best? How do you know it performs best?
+
+The resampled model drastically outperform the original model as shown below.
+
+![Model Fit Predict](original_confusion.png)    ![Model Fit Predict](resampled_confusion.png)
+
 * Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
 
 If you do not recommend any of the models, please justify your reasoning.
