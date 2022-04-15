@@ -119,8 +119,8 @@ Using bulleted lists, describe the balanced accuracy scores and the precision an
   
  In order to evaluate the models, we must take a close look at the confusion matrix.  Below we find the confusion matrix for the un-resampled test data.
      
- TP[[18663   102]
- FP[   56   563]]
+ TP[[18663   102]  
+ FP[   56   563]]  
 
   
 Precision – What percent of your predictions were correct?
