@@ -207,4 +207,6 @@ In this case the most important condition we are trying to predict is that when 
 
 If you do not recommend any of the models, please justify your reasoning.
 
-## We reccomend the balanced model for lending purposes.
+# Conclusion
+
+### We reccomend the balanced model for lending purposes!
