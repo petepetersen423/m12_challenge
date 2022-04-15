@@ -10,9 +10,9 @@ Credit risk poses a classification problem that’s inherently imbalanced. This 
 
 ## What we created
 
-Using your knowledge of the imbalanced-learn library, we created a logistic regression model to compare two versions of the dataset. First, the original dataset. Second, we resampled the data by using the RandomOverSampler module from the imbalanced-learn library.
+Using our knowledge of the imbalanced-learn library, we created a logistic regression model to compare two versions of the dataset. First, the original dataset. Second, we resampled the data by using the RandomOverSampler module from the imbalanced-learn library.
 
-For both cases, you’ll get the count of the target classes, train a logistic regression classifier, calculate the balanced accuracy score, generate a confusion matrix, and generate a classification report.
+For both cases, we printed the count of the target classes, trained a logistic regression classifier, calculated the balanced accuracy score, generated a confusion matrix, and generate a classification report.
 
 Also in this GitHub repository’s we created a credit risk analysis (**report-template.md**)report based on the template provided in the challenges Starter_Code folder.
 
