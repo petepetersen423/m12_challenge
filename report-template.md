@@ -22,7 +22,7 @@ y.value_counts()
 ```
 
     0    75036
-    1     2500
+    1     2500  
     Name: loan_status
 
 We therefore determine that the model will benefit by training with resampled data in order to balance the minority class to the majority.  In order to leave the orginal targets unmolested, we first split the data into test and training and observe the following counts in our test and training y variables.
@@ -46,13 +46,13 @@ X_resampled, y_resampled = random_oversampler.fit_resample(X_train, y_train)
 display(y_resampled.value_counts()
 y_resampled.value_counts()
 ```
-0    56271
-1     1881
-Name: loan_status, dtype: int64
+    0    56271
+    1     1881  
+    Name: loan_status, dtype: int64
 
-0    56271
-1    56271
-Name: loan_status, dtype: int64
+    0    56271
+    1    56271  
+    Name: loan_status, dtype: int64
 
 Initally we verify the the test train split presevered the 3% minority class.  Next, We note that after resampling the original minority class is now appropriately in balance with the majority class.
 
