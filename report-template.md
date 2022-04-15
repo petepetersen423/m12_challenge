@@ -61,13 +61,13 @@ Initally we verify the the test train split presevered the 3% minority class.  N
 
 ![Model Fit Predict](12-1-model-fit-predict-diagram.png)
 
-    ### 1.  Model
+   ### 1.  Model
     A machine learning model mathematically represents something in the real world. A model starts as untrained. That is, we haven’t yet adjusted it to make sense of the data. 
     
-    ### 2.  Fit
+   ### 2.  Fit
     The fit stage (also known as the training stage) is when we fit the model to the data. The fit stage of supervised learning is when the model starts to learn how to adjust (or train) itself to make predictions matching the data that we give it.
 
-    ### 3.  Predict
+   ### 3.  Predict
     Once the model has been fit to the data (that is, trained), we can use the trained model to predict new data. If we give the model new data that’s similar enough to the data that it’s gotten before, it can guess (or predict) the outcome for that data.
 
 * Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
