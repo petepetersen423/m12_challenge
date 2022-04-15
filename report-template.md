@@ -10,7 +10,7 @@ Using imbalanced-learn and scikit-learn libraries,  evaluate two machine learnin
 
 * Explain what financial information the data was on, and what you needed to predict.
 
-For this excersise we use a dataset of historical lending activity from a peer-to-peer lending services company to build a model that can identify the creditworthiness of borrowers.  The provided data includes loan_size, interest_rate, borrower_income, debt_to_income, num_of_accounts, derogatory_marks,and  total_debt.  The dataset also includes our target variable **Loan Status'**.  Since the labeled **'Loan Status'** contains either a value of 0  meaning that the loan is healthy, or a value of 1 meaning that the loan has a high risk of defaulting.  We will select a model that minimizes the false positives (incorrectly predicted healthy loans)in the 0 class and the false negatives(loans the we failed to predict as unhealthly) in the 1 class.  However, we belive that we should seek to minimize the incorrectly predicted healthy loans because because these loans will not be priced appropriately to handle the probability of default, while a false prediction in the unhealthy class is not a risk to the lender, but only falsely punishes the borrower since they will be saddled with an in appropriate rate compensate for teh default risk.
+For this excersise we use a dataset of historical lending activity from a peer-to-peer lending services company to build a model that can identify the creditworthiness of borrowers.  The provided data includes loan_size, interest_rate, borrower_income, debt_to_income, num_of_accounts, derogatory_marks,and  total_debt.  The dataset also includes our target variable **Loan Status'**.  Since the labeled **'Loan Status'** contains either a value of 0  meaning that the loan is healthy, or a value of 1 meaning that the loan has a high risk of defaulting.  We will select a model that minimizes the false positives (incorrectly predicted healthy loans)in the 0 class and the false negatives(loans the we failed to predict as unhealthly) in the 1 class.  However, we belive that we should seek to minimize the incorrectly predicted healthy loans because because these loans will not be priced appropriately to handle the probability of default, while a false prediction in the unhealthy class is not a risk to the lender, but only falsely punishes the borrower since they will be saddled with an in appropriate rate in order to compensate the lender for incorrectly predicted default risk.
 
 * Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
 
@@ -31,8 +31,6 @@ We therefore determine that the model will benefit by training with resampled da
 # Count the distinct values of the resampled labels data
 display(y_train.value_counts())
 
-
-
 # Import the RandomOverSampler module form imbalanced-learn
 from imblearn.over_sampling import RandomOverSampler
 
@@ -46,6 +44,7 @@ X_resampled, y_resampled = random_oversampler.fit_resample(X_train, y_train)
 display(y_resampled.value_counts()
 y_resampled.value_counts()
 ```
+
     0    56271
     1     1881  
     Name: loan_status, dtype: int64
@@ -75,7 +74,9 @@ Initally we verify the the test train split presevered the 3% minority class.  N
 
 * Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
 
-### Step 1: Split the data into training and testing datasets by using `train_test_split`.
+We highlight below the various methods that were used in our model evaluation process.
+
+### Method 1: Split the data into training and testing datasets by using `train_test_split`.
 ```
 # Import the train_test_learn module
 from sklearn.model_selection import train_test_split
@@ -84,7 +85,7 @@ from sklearn.model_selection import train_test_split
 # Assign a random_state of 1 to the function
 X_train, X_test, y_train, y_test = train_test_split(X,y, random_state=1)
 ```
-###  Step 2: Fit a logistic regression model by using the training data (`X_train` and `y_train`).
+###  Method 2: Fit a logistic regression model by using the training data (`X_train` and `y_train`).
 ```
 # Import the LogisticRegression module from SKLearn
 from sklearn.linear_model import LogisticRegression
@@ -95,18 +96,18 @@ model = LogisticRegression(random_state=1)
 # Fit the model using training data
 lr_orginal_model = model.fit(X_train, y_train)
 ```
-### Step 3: Save the predictions on the testing data labels by using the testing feature data (`X_test`) and the fitted model.
+###  Method 3: Save the predictions on the testing data labels by using the testing feature data (`X_test`) and the fitted model.
 ```
 # Make a prediction using the testing data
 y_original_pred = lr_orginal_model.predict(X_test)
 ```
-### Step 4: Evaluate the model’s performance by doing the following:
+### Method 4: Evaluate the model’s performance by doing the following:
 
-    * Calculate the accuracy score of the model.
+    * balanced_accuracy_score() - Calculate the accuracy score of the model. 
 
-    * Generate a confusion matrix.
+    * confusion_matrix() - Generate a confusion matrix.
 
-    * Print the classification report.
+    * classification_report_imbalanced() - Print the classification report.
 
 
 ## Results
@@ -190,10 +191,20 @@ Summarize the results of the machine learning models, and include a recommendati
 
 * Which one seems to perform best? How do you know it performs best?
 
-The resampled model drastically outperform the original model as shown below.
+The resampled model drastically outperform the original model as shown below. Although we lose some precision, we gain in both accuracy and recall of the model trained on the resampled data.  We definitely are reccomending that the financial institution use the resampled and balanced model for it loan default prediction.  This is because we do not want to falsely predict healthy when they are likely to default as this will not only lead to unforcasted losses, but the lender will inappropriately set the rate to low for the risk. In this case our model perfomance improves from 56 False Positives in the 0 class for the unbalancedd model, and improves to only 4 errors in the 0 class for the balanced model
 
-![Model Fit Predict](original_confusion.png)    ![Model Fit Predict](resampled_confusion.png)
+## Model Performance
+ 
+### Original Imbalanced Data Model
+![Model Fit Predict](original_confusion.png)   
+
+### Resampled and Balanced Data Model
+![Model Fit Predict](resampled_confusion.png)
 
 * Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
 
+In this case the most important condition we are trying to predict is that when we make a prediction of 0 (healthy loan) that it is not actually a 1 (unhealty loan). So, yes, model performace does depend on wether you are trying to predict the 0's or the 1's in the lending case.
+
 If you do not recommend any of the models, please justify your reasoning.
+
+## We reccomend the balanced model for lending purposes.
