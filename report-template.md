@@ -59,15 +59,49 @@ Initally we verify the the test train split presevered the 3% minority class.  N
 * Describe the stages of the machine learning process you went through as part of this analysis.
 
     ### 1.  Model
-    A machine learning model mathematically represents something in the real world. A model starts as untrained. That is, we haven’t yet adjusted it to make sense of the data. You can think of an untrained model as a mathematical ball of clay that’s ready to be shaped to the data.
-
+    A machine learning model mathematically represents something in the real world. A model starts as untrained. That is, we haven’t yet adjusted it to make sense of the data. 
+    
     ### 2.  Fit
-    The fit stage (also known as the training stage) is when we fit the model to the data. In the mathematical ball-of-clay analogy, we adjust the model so that it matches patterns in the data. Recall that in our time series forecasting, the Prophet tool built a model that matched the time series components of the data. We could then use that model to forecast the values that future data might have. The fit stage of supervised learning works the same way. This is when the model starts to learn how to adjust (or train) itself to make predictions matching the data that we give it.
+    The fit stage (also known as the training stage) is when we fit the model to the data. The fit stage of supervised learning is when the model starts to learn how to adjust (or train) itself to make predictions matching the data that we give it.
 
     ### 3.  Predict
     Once the model has been fit to the data (that is, trained), we can use the trained model to predict new data. If we give the model new data that’s similar enough to the data that it’s gotten before, it can guess (or predict) the outcome for that data.
 
 * Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
+
+### Step 1: Split the data into training and testing datasets by using `train_test_split`.
+```
+# Import the train_test_learn module
+from sklearn.model_selection import train_test_split
+
+# Split the data using train_test_split
+# Assign a random_state of 1 to the function
+X_train, X_test, y_train, y_test = train_test_split(X,y, random_state=1)
+```
+###  Step 2: Fit a logistic regression model by using the training data (`X_train` and `y_train`).
+```
+# Import the LogisticRegression module from SKLearn
+from sklearn.linear_model import LogisticRegression
+
+# Instantiate the Logistic Regression model
+# Assign a random_state parameter of 1 to the model
+model = LogisticRegression(random_state=1)
+# Fit the model using training data
+lr_orginal_model = model.fit(X_train, y_train)
+```
+### Step 2: Save the predictions on the testing data labels by using the testing feature data (`X_test`) and the fitted model.
+```
+# Make a prediction using the testing data
+y_original_pred = lr_orginal_model.predict(X_test)
+```
+### Step 3: Evaluate the model’s performance by doing the following:
+
+    * Calculate the accuracy score of the model.
+
+    * Generate a confusion matrix.
+
+    * Print the classification report.
+
 
 ## Results
 
